@@ -1,21 +1,16 @@
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Login from "./features/auth/Login.jsx"
+import Dashboard from "./features/dashboard/Dashboard.jsx";
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:5001/api/test')
-      .then(res => res.json())
-      .then(data => setMessage(data.message))
-      .catch(err => console.error(err));
-  }, []);
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>My MERN App</h1>
-      <p>{message || 'Loading...'}</p>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App;
